@@ -1,4 +1,4 @@
-import { startSiteCompare } from './site-compare.js?v=3';
+import { startSiteCompare } from './site-compare.js?v=4';
 import { startClimate } from './climate.js';
 import { startFolio } from './folio.js';
 import { startLevels } from './levels.js';

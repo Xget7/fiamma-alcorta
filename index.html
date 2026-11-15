@@ -17,7 +17,7 @@
     document.documentElement.classList.add('motion-pending');
     setTimeout(() => document.documentElement.classList.remove('motion-pending'), 3000);
   </script>
-  <link rel="stylesheet" href="styles.css?v=site-compare-3">
+  <link rel="stylesheet" href="styles.css?v=site-compare-4">
   <link rel="stylesheet" href="viewer.css">
   <link rel="stylesheet" href="motion.css">
   <link rel="stylesheet" href="sound.css">
@@ -93,21 +93,21 @@ FORM: printed architecture portfolio as a single scroll. Direction pinned by the
       <p class="sub">Entre Ríos</p>
     </div>
 
-    <figure class="fig lugar__map" style="--ar: 1.7778">
-      <div class="site-compare" style="--reveal: 58%" aria-label="Comparación del terreno y el proyecto">
-        <img class="site-compare__image" src="media/sector-visualizacion.webp" width="1672" height="941" loading="lazy" decoding="async" alt="Visualización aérea mejorada con IA del sector de San Martín y Cazzulino.">
+    <figure class="fig lugar__map" style="--ar: 1.85185">
+      <div class="site-compare" style="--reveal: 56.5%" aria-label="Comparación del terreno y el proyecto">
+        <img class="site-compare__image" src="media/sector-satelital-2000.jpg" width="2000" height="1125" loading="lazy" decoding="async" alt="Fotografía satelital original de San Martín y Cazzulino con implantación del proyecto según la planta.">
         <div class="site-compare__project" aria-hidden="true"></div>
-        <svg class="site-compare__outline" viewBox="0 0 2000 1125" aria-hidden="true">
-          <polygon points="1000,374 1198,347 1299,760 1082,800" fill="none" stroke="white" stroke-width="1" vector-effect="non-scaling-stroke" />
+        <svg class="site-compare__outline" viewBox="0 45 2000 1080" aria-hidden="true">
+          <polygon points="1033.9,802.3 953.7,395.1 1165.4,353.4 1204.4,379.6 1278.2,754.2" fill="none" stroke="white" stroke-width="1" vector-effect="non-scaling-stroke" />
         </svg>
         <span class="site-street site-street--san">San Martín</span>
         <span class="site-street site-street--cazz">P. F. Cazzulino</span>
         <span class="site-street site-street--diez">Ing. Diez Figueras</span>
         <div class="site-compare__divider" aria-hidden="true"><span>↔</span></div>
-        <input class="site-compare__slider" type="range" min="0" max="100" value="58" aria-label="Mostrar proyecto sobre el terreno" aria-valuetext="58% con proyecto">
+        <input class="site-compare__slider" type="range" min="0" max="100" value="56.5" aria-label="Mostrar proyecto sobre el terreno" aria-valuetext="57% con proyecto">
       </div>
       <figcaption class="site-compare__caption">
-        <span title="Visualización con IA. Implantación y límite orientativos.">Simulación con IA</span>
+        <span title="Orientación y escala ajustadas a la planta y la barra de 10 m de la foto. Registro geográfico aproximado.">Implantación orientativa</span>
         <span>Google Earth / Airbus <a href="media/sector-satelital-2000.jpg" target="_blank" rel="noopener" aria-label="Ver fotografía satelital original">Original ↗</a></span>
       </figcaption>
     </figure>
@@ -403,24 +403,22 @@ FORM: printed architecture portfolio as a single scroll. Direction pinned by the
   <section class="sheet" data-sheet>
     <div class="pair">
       <figure class="fig" style="--ar: 1.498">
-        <button class="zoom" type="button" data-full="media/habitacion-1800.webp" aria-label="Ampliar habitación">
-          <img src="media/habitacion-900.webp"
-               srcset="media/habitacion-900.webp 900w, media/habitacion-1800.webp 1800w"
+        <button class="zoom" type="button" data-full="media/habitacion-mejorada.png" aria-label="Ampliar habitación">
+          <img src="media/habitacion-mejorada.webp"
                sizes="(min-width: 800px) 45vw, 100vw"
-               width="1800" height="1202" loading="lazy" decoding="async"
+               width="1535" height="1025" loading="lazy" decoding="async"
                alt="Habitación en el entrepiso, abierta al balcón.">
         </button>
-        <figcaption><span>Habitación</span></figcaption>
+        <figcaption><span>Habitación</span><span class="credit">Mejorada con IA</span></figcaption>
       </figure>
       <figure class="fig" style="--ar: 1.498">
-        <button class="zoom" type="button" data-full="media/local-1800.webp" aria-label="Ampliar local">
-          <img src="media/local-900.webp"
-               srcset="media/local-900.webp 900w, media/local-1800.webp 1800w"
+        <button class="zoom" type="button" data-full="media/local-mejorado.png" aria-label="Ampliar local">
+          <img src="media/local-mejorado.webp"
                sizes="(min-width: 800px) 45vw, 100vw"
-               width="1800" height="1202" loading="lazy" decoding="async"
+               width="1535" height="1025" loading="lazy" decoding="async"
                alt="Local de ropa con el frente vidriado a la calle.">
         </button>
-        <figcaption><span>Local</span></figcaption>
+        <figcaption><span>Local</span><span class="credit">Mejorada con IA</span></figcaption>
       </figure>
     </div>
   </section>
@@ -507,6 +505,6 @@ FORM: printed architecture portfolio as a single scroll. Direction pinned by the
   <div class="viewer__paper"></div>
 </dialog>
 
-<script type="module" src="main.js?v=site-compare-3"></script>
+<script type="module" src="main.js?v=site-compare-4"></script>
 </body>
 </html>
