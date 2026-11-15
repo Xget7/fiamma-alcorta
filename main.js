@@ -1,3 +1,4 @@
+import { startSiteCompare } from './site-compare.js';
 import { startClimate } from './climate.js';
 import { startFolio } from './folio.js';
 import { startLevels } from './levels.js';
@@ -7,6 +8,7 @@ import { startViewer } from './viewer.js';
 
 startViewer();
 startLevels();
+startSiteCompare();
 // The climate figure is drawn before the entrances are set up, so it gets one too.
 startClimate();
 startFolio();
