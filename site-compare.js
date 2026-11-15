@@ -17,28 +17,45 @@ export function startSiteCompare() {
   if (!host) return;
   const layer = host.querySelector('.site-compare__project');
   const slider = host.querySelector('input');
-  const controls = host.parentElement.querySelector('.site-compare__controls');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  let manual = false, pending = false, visible = false;
+  const center = 58;
+  let manual = false, visible = false, ready = false, hinted = false, frame = 0;
   function setReveal(value) {
     const progress = Math.max(0, Math.min(100, value));
     host.style.setProperty('--reveal', `${progress}%`);
     slider.value = String(progress);
     slider.setAttribute('aria-valuetext', `${Math.round(progress)}% con proyecto`);
   }
-  function onScroll() {
-    if (pending || manual || reduced.matches || !visible) return;
-    pending = true;
-    requestAnimationFrame(() => {
-      pending = false;
-      const rect = host.getBoundingClientRect();
-      setReveal((innerHeight * .8 - rect.top) / (innerHeight * .65) * 100);
-    });
+  function stopHint() {
+    cancelAnimationFrame(frame);
+    frame = 0;
   }
-  slider.addEventListener('input', () => { manual = true; setReveal(Number(slider.value)); });
-  for (const button of controls.querySelectorAll('button')) {
-    button.addEventListener('click', () => { manual = true; setReveal(Number(button.dataset.siteValue)); });
+  function hint() {
+    if (frame || !ready || !visible || manual || hinted || reduced.matches || document.hidden) return;
+    let start;
+    function tick(now) {
+      start ??= now;
+      const progress = Math.min(1, (now - start) / 4400);
+      // Two restrained passes, easing back to the center of the house.
+      setReveal(center + 1.2 * Math.sin(progress * Math.PI * 4) * Math.sin(progress * Math.PI));
+      if (progress < 1) frame = requestAnimationFrame(tick);
+      else { frame = 0; hinted = true; setReveal(center); }
+    }
+    frame = requestAnimationFrame(tick);
   }
+  function takeControl() { manual = true; stopHint(); }
+  slider.addEventListener('pointerdown', takeControl);
+  slider.addEventListener('focus', takeControl);
+  slider.addEventListener('input', () => { takeControl(); setReveal(Number(slider.value)); });
+  reduced.addEventListener('change', () => {
+    stopHint();
+    if (!manual) setReveal(center);
+    hint();
+  });
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stopHint(); else hint();
+  });
+  setReveal(center);
 
   async function mount() {
     try {
@@ -82,17 +99,18 @@ export function startSiteCompare() {
       new ResizeObserver(draw).observe(host);
       draw();
       host.classList.add('is-ready');
-      controls.hidden = false;
-      if (reduced.matches) setReveal(50); else onScroll();
-      addEventListener('scroll', onScroll, { passive: true });
+      ready = true;
+      hint();
       renderer.domElement.addEventListener('webglcontextlost', () => {
         host.classList.remove('is-ready');
-        controls.hidden = true;
+        ready = false;
+        stopHint();
         layer.hidden = true;
       });
     } catch (error) {
       console.error('No se pudo cargar la implantación 3D.', error);
-      controls.hidden = true;
+      ready = false;
+      stopHint();
       host.classList.remove('is-ready');
     }
   }
@@ -100,7 +118,7 @@ export function startSiteCompare() {
   const observer = new IntersectionObserver(entries => {
     visible = entries.some(entry => entry.isIntersecting);
     if (visible && !started) { started = true; mount(); }
-    if (visible) onScroll();
+    if (visible) hint(); else stopHint();
   });
   observer.observe(host);
 }

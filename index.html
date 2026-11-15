@@ -17,7 +17,7 @@
     document.documentElement.classList.add('motion-pending');
     setTimeout(() => document.documentElement.classList.remove('motion-pending'), 3000);
   </script>
-  <link rel="stylesheet" href="styles.css?v=site-compare-2">
+  <link rel="stylesheet" href="styles.css?v=site-compare-3">
   <link rel="stylesheet" href="viewer.css">
   <link rel="stylesheet" href="motion.css">
   <link rel="stylesheet" href="sound.css">
@@ -94,7 +94,7 @@ FORM: printed architecture portfolio as a single scroll. Direction pinned by the
     </div>
 
     <figure class="fig lugar__map" style="--ar: 1.7778">
-      <div class="site-compare" style="--reveal: 0%" aria-label="Comparación del terreno y el proyecto">
+      <div class="site-compare" style="--reveal: 58%" aria-label="Comparación del terreno y el proyecto">
         <img class="site-compare__image" src="media/sector-visualizacion.webp" width="1672" height="941" loading="lazy" decoding="async" alt="Visualización aérea mejorada con IA del sector de San Martín y Cazzulino.">
         <div class="site-compare__project" aria-hidden="true"></div>
         <svg class="site-compare__outline" viewBox="0 0 2000 1125" aria-hidden="true">
@@ -104,15 +104,12 @@ FORM: printed architecture portfolio as a single scroll. Direction pinned by the
         <span class="site-street site-street--cazz">P. F. Cazzulino</span>
         <span class="site-street site-street--diez">Ing. Diez Figueras</span>
         <div class="site-compare__divider" aria-hidden="true"><span>↔</span></div>
-        <input class="site-compare__slider" type="range" min="0" max="100" value="0" aria-label="Mostrar proyecto sobre el terreno" aria-valuetext="Terreno sin proyecto">
+        <input class="site-compare__slider" type="range" min="0" max="100" value="58" aria-label="Mostrar proyecto sobre el terreno" aria-valuetext="58% con proyecto">
       </div>
-      <div class="site-compare__controls" hidden>
-        <button type="button" data-site-value="0">Terreno</button>
-        <span>Deslizá para comparar</span>
-        <button type="button" data-site-value="100">Con proyecto</button>
-      </div>
-      <figcaption><span>Sector elegido</span><span class="credit">Base: Google Earth / Airbus</span></figcaption>
-      <p class="lugar__map-note">Visualización con IA. Implantación y límite orientativos. <a href="media/sector-satelital-2000.jpg" target="_blank" rel="noopener">Ver foto original</a></p>
+      <figcaption class="site-compare__caption">
+        <span title="Visualización con IA. Implantación y límite orientativos.">Simulación con IA</span>
+        <span>Google Earth / Airbus <a href="media/sector-satelital-2000.jpg" target="_blank" rel="noopener" aria-label="Ver fotografía satelital original">Original ↗</a></span>
+      </figcaption>
     </figure>
 
     <figure class="fig lugar__street" style="--ar: 1.678">
@@ -510,6 +507,6 @@ FORM: printed architecture portfolio as a single scroll. Direction pinned by the
   <div class="viewer__paper"></div>
 </dialog>
 
-<script type="module" src="main.js?v=site-compare-2"></script>
+<script type="module" src="main.js?v=site-compare-3"></script>
 </body>
 </html>

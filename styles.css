@@ -617,9 +617,7 @@ h2 b {
 .site-compare__divider span { position: absolute; top: 50%; transform: translate(-50%,-50%); border-radius: 50%; background: #fff; color: #222; width: 36px; height: 36px; display: grid; place-items: center; box-shadow: 0 1px 8px #0004; }
 .site-compare__slider { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; touch-action: pan-y; display: none; }
 .site-compare.is-ready .site-compare__slider { display: block; }
-.site-compare:focus-within { outline: 2px solid var(--teal); outline-offset: 4px; }
-.site-compare__controls { display: flex; justify-content: space-between; align-items: center; gap: 1rem; font-size: var(--small); margin-top: .9rem; }
-.site-compare__controls[hidden] { display: none; }
-.site-compare__controls button { border: 0; padding: .5rem 0; background: none; color: var(--ink); font: inherit; text-decoration: underline; text-underline-offset: .25em; cursor: pointer; }
-.site-compare__controls span, .lugar__map-note { color: var(--mute); }
-.lugar__map-note { margin: .65rem 0 0; font-size: var(--small); }
+.site-compare:has(.site-compare__slider:focus-visible) { outline: 2px solid var(--teal); outline-offset: 4px; }
+.fig .site-compare__caption { color: var(--mute); font-size: .75rem; gap: .4rem 1rem; margin-top: .65rem; }
+.site-compare__caption a { margin-left: .7rem; text-decoration: none; }
+.site-compare__caption a:hover { text-decoration: underline; }
