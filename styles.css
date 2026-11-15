@@ -608,3 +608,7 @@ h2 b {
     display: none;
   }
 }
+
+/* The map keeps the footprint of the original satellite plate. */
+.lugar__interactive-map { display:block; width:100%; height:auto; aspect-ratio:1.898; min-height:300px; border:0; }
+.lugar__map figcaption { flex-wrap:wrap; }
