@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Representación Arquitectónica de Fiamma Alcorta</title>
+  <meta name="description" content="Trabajo de Representación Arquitectónica, Sistemas Digitales. Fiamma Alcorta, UNDAV. Vivienda con local, 2026.">
+  <meta property="og:title" content="Representación Arquitectónica de Fiamma Alcorta">
+  <meta property="og:description" content="Vivienda con local, 2026. Plantas, cortes, vistas, estructura e interiores.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/chivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <script>
+    // motion.js brings content in from hidden. Hide it before first paint, and show
+    // it anyway if motion.js never takes over.
+    document.documentElement.classList.add('motion-pending');
+    setTimeout(() => document.documentElement.classList.remove('motion-pending'), 3000);
+  </script>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="viewer.css">
+  <link rel="stylesheet" href="motion.css">
+  <link rel="stylesheet" href="sound.css">
+  <link rel="stylesheet" href="levels.css">
+  <link rel="stylesheet" href="climate.css">
+  <link rel="stylesheet" href="house.css">
+  <script type="module" src="house-viewer.js"></script>
+</head>
+<body>
+<!--
+THESIS: the drawing set is the portfolio. Each drawing gets a page of white paper to itself; no hero, no cards, no section blurbs.
+OWN-WORLD: paper white, ink black, one grotesque (Chivo) in light and bold. The only colour is the work's own: the teal ground of her plans, brick, timber.
+STORY: she can model and document a building end to end, from site plan to schedule. Read the set, then her profile.
+FIRST VIEWPORT: name top left at text size, contents bottom left, the exploded axonometric filling the right two thirds on bare paper.
+FORM: printed architecture portfolio as a single scroll. Direction pinned by the brief, no concept roll.
+-->
+
+<div class="house-scroll">
+<header class="sheet cover" id="inicio" data-sheet>
+  <div class="cover__id">
+    <h1>Fiamma <b>Alcorta</b></h1>
+    <p>Representación Arquitectónica<br>Sistemas Digitales</p>
+  </div>
+
+  <nav class="cover__nav" aria-label="Contenido">
+    <a href="#vivienda">Vivienda con local</a>
+    <a href="#perfil">Perfil</a>
+  </nav>
+
+  <figure class="fig cover__fig" style="--ar: .95">
+    <div class="house-stage"></div>
+    <button class="zoom house-fallback" type="button" data-full="media/despiece-1800.webp" aria-label="Ampliar despiece">
+      <img src="media/despiece-900.webp"
+           srcset="media/despiece-900.webp 900w, media/despiece-1800.webp 1800w"
+           sizes="(min-width: 800px) 55vw, 100vw"
+           width="1800" height="1894" fetchpriority="high"
+           alt="Axonometría despiezada: las cubiertas, la planta alta y la planta baja de la casa y del local separadas en vertical.">
+    </button>
+
+  </figure>
+</header>
+</div>
+
+<main>
+  <section class="sheet spread" id="vivienda" data-sheet>
+    <div class="spread__text">
+      <h2>Vivienda <b>con local</b></h2>
+      <dl class="facts">
+        <div><dt>Programa</dt><dd>Vivienda unifamiliar y local de ropa</dd></div>
+        <div><dt>Terreno</dt><dd>Lote en esquina</dd></div>
+        <div><dt>Superficie</dt><dd>147 m² útiles</dd></div>
+        <div><dt>Año</dt><dd>2026</dd></div>
+        <div><dt>Modelo</dt><dd>Revit</dd></div>
+        <div><dt>Cátedra</dt><dd>Representación Arquitectónica, Nuñez. UNDAV</dd></div>
+      </dl>
+    </div>
+
+    <figure class="fig spread__fig" style="--ar: 1.639">
+      <button class="zoom" type="button" data-full="media/implantacion-2400.webp" aria-label="Ampliar implantación">
+        <img src="media/implantacion-1200.webp"
+             srcset="media/implantacion-1200.webp 1200w, media/implantacion-2400.webp 2400w"
+             sizes="(min-width: 800px) 62vw, 100vw"
+             width="2400" height="1464" loading="lazy" decoding="async"
+             alt="Implantación: la casa en la esquina de P. F. Cazzulino y San Martín, con las manzanas vecinas.">
+      </button>
+      <figcaption><span>Implantación</span><span class="bar" style="--len: .1212; --div: 4">20 m</span></figcaption>
+    </figure>
+  </section>
+
+  <section class="sheet lugar" data-sheet>
+    <div class="lugar__text">
+      <h2>Concepción <b>del Uruguay</b></h2>
+      <p class="sub">Entre Ríos</p>
+    </div>
+
+    <figure class="fig lugar__map" style="--ar: 1.898">
+      <div class="plate">
+        <img src="media/sector-520.webp"
+             srcset="media/sector-520.webp 520w, media/sector-1040.webp 1040w"
+             sizes="(min-width: 800px) 62vw, 100vw"
+             width="1040" height="548" loading="lazy" decoding="async"
+             alt="Imagen satelital del barrio: manzanas regulares de casas bajas y el lote, vacío, marcado en la esquina de San Martín y P. F. Cazzulino.">
+        <svg viewBox="0 0 1040 548" aria-hidden="true"><polygon points="397,229 493,222 524,401 427,418"/></svg>
+      </div>
+      <figcaption><span>Sector elegido</span><a href="https://www.google.com/maps/search/?api=1&amp;query=San%20Mart%C3%ADn%20y%20P.%20F.%20Cazzulino%2C%20Concepci%C3%B3n%20del%20Uruguay%2C%20Entre%20R%C3%ADos" target="_blank" rel="noopener noreferrer">Abrir en Google Maps</a><span class="credit">Imagen: Google</span></figcaption>
+    </figure>
+
+    <figure class="fig lugar__street" style="--ar: 1.678">
+      <div class="plate">
+        <img src="media/calle-584.webp"
+             width="584" height="348" loading="lazy" decoding="async"
+             alt="El lote desde la esquina: césped, cerco de alambre, muros linderos y cables aéreos.">
+      </div>
+      <figcaption><span>San Martín 2076</span></figcaption>
+    </figure>
+
+    <ul class="lugar__notes">
+      <li>Manzanas regulares y construcciones predominantemente bajas.</li>
+      <li>Se observan césped, cerco liviano, muros linderos y tendido aéreo.</li>
+      <li>Cerca se identifica el Cementerio Municipal, un recinto arbolado.</li>
+    </ul>
+  </section>
+
+  <section class="sheet clima" data-sheet>
+    <div class="clima__text">
+      <h2>Condiciones <b>climáticas</b></h2>
+      <dl class="keys">
+        <div><dt>Enero, máxima media</dt><dd>31 °C</dd></div>
+        <div><dt>Julio, mínima media</dt><dd>8 °C</dd></div>
+      </dl>
+      <p class="prose">Veranos cálidos y húmedos; inviernos frescos y con menos lluvia.</p>
+    </div>
+
+    <figure class="clima__fig">
+      <div class="chart-source">
+      <table class="chart-data">
+        <thead>
+          <tr><th scope="col">Mes</th><th scope="col">Máxima, °C</th><th scope="col">Mínima, °C</th><th scope="col">Lluvia, mm</th><th scope="col">Nublado, %</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Enero</th><td data-call>31</td><td data-call>20</td><td>112</td><td>30</td></tr>
+          <tr><th scope="row">Febrero</th><td>30</td><td>19</td><td data-call>136</td><td>31</td></tr>
+          <tr><th scope="row">Marzo</th><td>28</td><td>18</td><td>125</td><td data-call>30</td></tr>
+          <tr><th scope="row">Abril</th><td>24</td><td>14</td><td>129</td><td>36</td></tr>
+          <tr><th scope="row">Mayo</th><td>20</td><td>11</td><td>85</td><td>46</td></tr>
+          <tr><th scope="row">Junio</th><td>17</td><td>8</td><td>59</td><td data-call>50</td></tr>
+          <tr><th scope="row">Julio</th><td data-call>17</td><td data-call>8</td><td data-call>52</td><td>46</td></tr>
+          <tr><th scope="row">Agosto</th><td>19</td><td>9</td><td>58</td><td>44</td></tr>
+          <tr><th scope="row">Septiembre</th><td>21</td><td>11</td><td>79</td><td>39</td></tr>
+          <tr><th scope="row">Octubre</th><td>24</td><td>14</td><td>107</td><td>35</td></tr>
+          <tr><th scope="row">Noviembre</th><td>27</td><td>16</td><td>118</td><td>32</td></tr>
+          <tr><th scope="row">Diciembre</th><td>30</td><td>18</td><td>113</td><td>30</td></tr>
+        </tbody>
+      </table>
+      <p class="chart-comfort" data-months="1.5-4 9-12" data-label="Confort exterior">Mayor confort exterior: mediados de febrero a fines de abril y principios de octubre a fines de diciembre.</p>
+      </div>
+    </figure>
+  </section>
+
+  <section class="sheet spread" data-sheet>
+    <div class="spread__text">
+      <p class="ordinal">01</p>
+      <h2>Esquina <b>y dos usos</b></h2>
+      <p class="prose">Casa por San Martín y comercio por Cazzulino. Los accesos diferenciados y el retiro ordenan la relación entre calle, actividad comercial y vida doméstica.</p>
+    </div>
+
+    <figure class="fig spread__fig" style="--ar: 1.582">
+      <button class="zoom" type="button" data-full="media/aerea-1800.webp" aria-label="Ampliar vista aérea">
+        <img src="media/aerea-900.webp"
+             srcset="media/aerea-900.webp 900w, media/aerea-1800.webp 1800w"
+             sizes="(min-width: 800px) 62vw, 100vw"
+             width="1800" height="1138" loading="lazy" decoding="async"
+             alt="Vista aérea del lote en esquina: la casa de dos plantas, el local al frente, la pérgola y el patio entre los dos, y el muro de ladrillo sobre la vereda.">
+      </button>
+      <figcaption><span>Vista aérea</span></figcaption>
+    </figure>
+  </section>
+
+  <section class="sheet spread" data-sheet>
+    <div class="spread__text">
+      <p class="ordinal">02</p>
+      <h2>Patio <b>y sombra</b></h2>
+      <p class="prose">El patio y la galería conectan los volúmenes. Pérgola, balcón y árboles ofrecen protección posible; comprobar la sombra de la vivienda sobre el jardín.</p>
+      <p class="prose">Verano: sol alto; favorecer la sombra. Invierno: sol bajo; captar sol desde el norte.</p>
+    </div>
+
+    <figure class="fig spread__fig sun" style="--ar: 1.818">
+      <div class="plate" role="img" aria-label="Sección esquemática norte-sur: al mediodía el sol de verano queda a 81 grados sobre el horizonte norte y el de invierno a 34 grados.">
+        <svg viewBox="0 0 600 330" aria-hidden="true">
+          <path class="sun__sky" d="M30 300A270 270 0 0 1 570 300"/>
+          <path class="sun__angle" d="M244 300A56 56 0 0 1 253.6 268.7M208 300A92 92 0 0 1 285.6 209.1"/>
+          <path d="M0 300H600M76.2 149 300 300 257.8 33.3"/>
+          <circle class="sun__winter" cx="76.2" cy="149" r="7"/>
+          <circle class="sun__summer" cx="257.8" cy="33.3" r="7"/>
+        </svg>
+        <span style="--x: 278; --y: 33" data-at="right">Verano, 81°</span>
+        <span style="--x: 66; --y: 122" data-at="right">Invierno, 34°</span>
+        <span style="--x: 30; --y: 316">N</span>
+        <span style="--x: 570; --y: 316">S</span>
+      </div>
+      <figcaption><span>Asoleamiento, sección N-S</span><span class="credit">Mediodía de los solsticios</span></figcaption>
+    </figure>
+  </section>
+
+  <section class="sheet spread" data-sheet>
+    <div class="spread__text">
+      <p class="ordinal">03</p>
+      <h2>Luz <b>y ventilación</b></h2>
+      <p class="prose">La doble altura vincula el área social con el entrepiso. Estudia ventilación cruzada y salida de aire caliente por ventanas altas que pueden abrirse.</p>
+      <p class="prose">Las ventanas altas iluminan el área social. Aperturas bajas y altas para evacuar calor en verano.</p>
+    </div>
+
+    <figure class="fig spread__fig" style="--ar: 1.62">
+      <button class="zoom" type="button" data-full="media/ventilacion-1800.webp" aria-label="Ampliar circulación de aire">
+        <img src="media/ventilacion-900.webp"
+             srcset="media/ventilacion-900.webp 900w, media/ventilacion-1800.webp 1800w"
+             sizes="(min-width: 800px) 62vw, 100vw"
+             width="1800" height="1112" loading="lazy" decoding="async"
+             alt="Corte con el recorrido del sol y del aire: entra por las aberturas bajas, sube por la doble altura y sale por las ventanas altas.">
+      </button>
+      <figcaption><span>Circulación de aire</span></figcaption>
+    </figure>
+  </section>
+
+  <section class="sheet levels" data-sheet>
+    <div class="levels__pin">
+      <figure class="fig" style="--ar: 1.465">
+        <button class="zoom" type="button" data-full="media/planta-baja-2400.webp" aria-label="Ampliar planta baja">
+          <img src="media/planta-baja-1200.webp"
+               srcset="media/planta-baja-1200.webp 1200w, media/planta-baja-2400.webp 2400w"
+               sizes="(min-width: 800px) 78vw, 100vw"
+               width="2400" height="1638" loading="lazy" decoding="async"
+               alt="Planta baja: cocina, comedor y sala de estar en un solo ambiente, baño y lavadero, y el local de ropa separado al fondo del lote.">
+        </button>
+        <figcaption><span>Planta baja</span><span class="bar" style="--len: .155">5 m</span></figcaption>
+      </figure>
+      <figure class="fig" style="--ar: 1.465">
+        <button class="zoom" type="button" data-full="media/planta-alta-2400.webp" aria-label="Ampliar planta alta">
+          <img src="media/planta-alta-1200.webp"
+               srcset="media/planta-alta-1200.webp 1200w, media/planta-alta-2400.webp 2400w"
+               sizes="(min-width: 800px) 78vw, 100vw"
+               width="2400" height="1638" loading="lazy" decoding="async"
+               alt="Planta alta: habitación en entrepiso, vestidor, baño y balcón sobre el vacío del comedor.">
+        </button>
+        <figcaption><span>Planta alta</span><span class="bar" style="--len: .155">5 m</span></figcaption>
+      </figure>
+      <figure class="fig" style="--ar: 1.465">
+        <button class="zoom" type="button" data-full="media/techos-2400.webp" aria-label="Ampliar planta de techos">
+          <img src="media/techos-1200.webp"
+               srcset="media/techos-1200.webp 1200w, media/techos-2400.webp 2400w"
+               sizes="(min-width: 800px) 78vw, 100vw"
+               width="2400" height="1638" loading="lazy" decoding="async"
+               alt="Planta de techos con las líneas de corte.">
+        </button>
+        <figcaption><span>Planta de techos</span><span class="bar" style="--len: .155">5 m</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sheet" data-sheet>
+    <figure class="fig at-4-12" style="--ar: .9">
+      <div class="stack">
+        <button class="zoom" type="button" data-full="media/corte-1-2400.webp" aria-label="Ampliar corte 1">
+          <img src="media/corte-1-1200.webp"
+               srcset="media/corte-1-1200.webp 1200w, media/corte-1-2400.webp 2400w"
+               sizes="(min-width: 800px) 70vw, 100vw"
+               width="2400" height="856" loading="lazy" decoding="async"
+               alt="Corte por la escalera y el entrepiso, con las bases de fundación.">
+        </button>
+        <button class="zoom" type="button" data-full="media/corte-2-2400.webp" aria-label="Ampliar corte 2">
+          <img src="media/corte-2-1200.webp"
+               srcset="media/corte-2-1200.webp 1200w, media/corte-2-2400.webp 2400w"
+               sizes="(min-width: 800px) 70vw, 100vw"
+               width="2400" height="856" loading="lazy" decoding="async"
+               alt="Corte por el comedor en doble altura.">
+        </button>
+        <button class="zoom" type="button" data-full="media/corte-3-2400.webp" aria-label="Ampliar corte 3">
+          <img src="media/corte-3-1200.webp"
+               srcset="media/corte-3-1200.webp 1200w, media/corte-3-2400.webp 2400w"
+               sizes="(min-width: 800px) 70vw, 100vw"
+               width="2400" height="856" loading="lazy" decoding="async"
+               alt="Corte por el local y la casa.">
+        </button>
+      </div>
+      <figcaption><span>Cortes</span><span class="bar" style="--len: .1687">5 m</span></figcaption>
+    </figure>
+  </section>
+
+  <section class="sheet" data-sheet>
+    <div class="pair pair--rows">
+      <figure class="fig" style="--ar: 2.744">
+        <button class="zoom" type="button" data-full="media/vista-frente-1800.webp" aria-label="Ampliar vista frente">
+          <img src="media/vista-frente-900.webp"
+               srcset="media/vista-frente-900.webp 900w, media/vista-frente-1800.webp 1800w"
+               sizes="(min-width: 800px) 45vw, 100vw"
+               width="1800" height="656" loading="lazy" decoding="async"
+               alt="Vista frente: volumen negro de dos plantas con cubierta a un agua.">
+        </button>
+        <figcaption><span>Vista frente</span><span class="bar" style="--len: .1687">5 m</span></figcaption>
+      </figure>
+      <figure class="fig" style="--ar: 2.744">
+        <button class="zoom" type="button" data-full="media/vista-lado-1-1800.webp" aria-label="Ampliar vista lado 1">
+          <img src="media/vista-lado-1-900.webp"
+               srcset="media/vista-lado-1-900.webp 900w, media/vista-lado-1-1800.webp 1800w"
+               sizes="(min-width: 800px) 45vw, 100vw"
+               width="1800" height="656" loading="lazy" decoding="async"
+               alt="Vista lateral: el local vidriado, el muro de ladrillo y la casa con su balcón.">
+        </button>
+        <figcaption><span>Vista lado 1</span><span class="bar" style="--len: .1687">5 m</span></figcaption>
+      </figure>
+      <figure class="fig" style="--ar: 2.744">
+        <button class="zoom" type="button" data-full="media/vista-trasera-1800.webp" aria-label="Ampliar vista trasera">
+          <img src="media/vista-trasera-900.webp"
+               srcset="media/vista-trasera-900.webp 900w, media/vista-trasera-1800.webp 1800w"
+               sizes="(min-width: 800px) 45vw, 100vw"
+               width="1800" height="656" loading="lazy" decoding="async"
+               alt="Vista trasera detrás del muro de ladrillo.">
+        </button>
+        <figcaption><span>Vista trasera</span><span class="bar" style="--len: .1687">5 m</span></figcaption>
+      </figure>
+      <figure class="fig" style="--ar: 2.744">
+        <button class="zoom" type="button" data-full="media/vista-lado-2-1800.webp" aria-label="Ampliar vista lado 2">
+          <img src="media/vista-lado-2-900.webp"
+               srcset="media/vista-lado-2-900.webp 900w, media/vista-lado-2-1800.webp 1800w"
+               sizes="(min-width: 800px) 45vw, 100vw"
+               width="1800" height="656" loading="lazy" decoding="async"
+               alt="Vista lateral opuesta, con la ventana corrida de la planta alta.">
+        </button>
+        <figcaption><span>Vista lado 2</span><span class="bar" style="--len: .1687">5 m</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sheet" data-sheet>
+    <figure class="fig at-2-11" style="--ar: 2.469">
+      <button class="zoom" type="button" data-full="media/estructura-2400.webp" aria-label="Ampliar estructura">
+        <img src="media/estructura-1200.webp"
+             srcset="media/estructura-1200.webp 1200w, media/estructura-2400.webp 2400w"
+             sizes="(min-width: 800px) 78vw, 100vw"
+             width="2400" height="972" loading="lazy" decoding="async"
+             alt="Axonometría de la estructura: bases aisladas, columnas, vigas, losas, escalera y cubiertas.">
+      </button>
+      <figcaption><span>Estructura</span></figcaption>
+    </figure>
+  </section>
+
+  <section class="sheet" data-sheet>
+    <figure class="fig at-1-12" style="--ar: 2.214">
+      <button class="zoom" type="button" data-full="media/corte-fugado-2400.webp" aria-label="Ampliar corte fugado">
+        <img src="media/corte-fugado-1200.webp"
+             srcset="media/corte-fugado-1200.webp 1200w, media/corte-fugado-2400.webp 2400w"
+             sizes="100vw"
+             width="2400" height="1084" loading="lazy" decoding="async"
+             alt="Corte fugado: el interior de la casa y del local vistos desde la calle.">
+      </button>
+      <figcaption><span>Corte fugado</span></figcaption>
+    </figure>
+  </section>
+
+  <section class="sheet" data-sheet>
+    <figure class="fig at-1-9" style="--ar: 1.311">
+      <button class="zoom" type="button" data-full="media/comedor-2400.webp" aria-label="Ampliar comedor">
+        <img src="media/comedor-1200.webp"
+             srcset="media/comedor-1200.webp 1200w, media/comedor-2400.webp 2400w"
+             sizes="(min-width: 800px) 70vw, 100vw"
+             width="2400" height="1830" loading="lazy" decoding="async"
+             alt="Comedor en doble altura con el entrepiso, la escalera y la cocina al fondo.">
+      </button>
+      <figcaption><span>Comedor</span></figcaption>
+    </figure>
+  </section>
+
+  <section class="sheet" data-sheet>
+    <div class="pair">
+      <figure class="fig" style="--ar: 1.45">
+        <button class="zoom" type="button" data-full="media/cocina-1800.webp" aria-label="Ampliar cocina">
+          <img src="media/cocina-900.webp"
+               srcset="media/cocina-900.webp 900w, media/cocina-1800.webp 1800w"
+               sizes="(min-width: 800px) 45vw, 100vw"
+               width="1800" height="1240" loading="lazy" decoding="async"
+               alt="Cocina con barra y techo de madera a la vista.">
+        </button>
+        <figcaption><span>Cocina</span></figcaption>
+      </figure>
+      <figure class="fig" style="--ar: 1.45">
+        <button class="zoom" type="button" data-full="media/estar-1800.webp" aria-label="Ampliar sala de estar">
+          <img src="media/estar-900.webp"
+               srcset="media/estar-900.webp 900w, media/estar-1800.webp 1800w"
+               sizes="(min-width: 800px) 45vw, 100vw"
+               width="1800" height="1242" loading="lazy" decoding="async"
+               alt="Sala de estar bajo la escalera, con el comedor y la cocina detrás.">
+        </button>
+        <figcaption><span>Sala de estar</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sheet" data-sheet>
+    <div class="pair">
+      <figure class="fig" style="--ar: 1.498">
+        <button class="zoom" type="button" data-full="media/habitacion-1800.webp" aria-label="Ampliar habitación">
+          <img src="media/habitacion-900.webp"
+               srcset="media/habitacion-900.webp 900w, media/habitacion-1800.webp 1800w"
+               sizes="(min-width: 800px) 45vw, 100vw"
+               width="1800" height="1202" loading="lazy" decoding="async"
+               alt="Habitación en el entrepiso, abierta al balcón.">
+        </button>
+        <figcaption><span>Habitación</span></figcaption>
+      </figure>
+      <figure class="fig" style="--ar: 1.498">
+        <button class="zoom" type="button" data-full="media/local-1800.webp" aria-label="Ampliar local">
+          <img src="media/local-900.webp"
+               srcset="media/local-900.webp 900w, media/local-1800.webp 1800w"
+               sizes="(min-width: 800px) 45vw, 100vw"
+               width="1800" height="1202" loading="lazy" decoding="async"
+               alt="Local de ropa con el frente vidriado a la calle.">
+        </button>
+        <figcaption><span>Local</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sheet" data-sheet>
+    <div class="pair">
+      <figure class="fig" style="--ar: 1.582">
+        <button class="zoom" type="button" data-full="media/exterior-frente-1800.webp" aria-label="Ampliar exterior, frente">
+          <img src="media/exterior-frente-900.webp"
+               srcset="media/exterior-frente-900.webp 900w, media/exterior-frente-1800.webp 1800w"
+               sizes="(min-width: 800px) 45vw, 100vw"
+               width="1800" height="1138" loading="lazy" decoding="async"
+               alt="La casa desde la vereda: chapa negra, alero de madera y balcón.">
+        </button>
+        <figcaption><span>Frente</span></figcaption>
+      </figure>
+      <figure class="fig" style="--ar: 1.582">
+        <button class="zoom" type="button" data-full="media/exterior-local-1800.webp" aria-label="Ampliar exterior, local">
+          <img src="media/exterior-local-900.webp"
+               srcset="media/exterior-local-900.webp 900w, media/exterior-local-1800.webp 1800w"
+               sizes="(min-width: 800px) 45vw, 100vw"
+               width="1800" height="1138" loading="lazy" decoding="async"
+               alt="El local entre muros de ladrillo, con la casa detrás.">
+        </button>
+        <figcaption><span>Local desde la vereda</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sheet planilla" data-sheet>
+    <h2>Planilla <b>de locales</b></h2>
+
+    <table>
+      <thead>
+        <tr><th scope="col">Planta baja</th><th scope="col">m²</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Comedor</td><td>32,28</td></tr>
+        <tr><td>Sala de estar</td><td>29,88</td></tr>
+        <tr><td>Local de ropa</td><td>25,56</td></tr>
+        <tr><td>Cocina</td><td>14,05</td></tr>
+        <tr><td>Lavadero</td><td>4,47</td></tr>
+        <tr><td>Baño</td><td>3,08</td></tr>
+      </tbody>
+      <tfoot>
+        <tr><td>Subtotal</td><td>109,31</td></tr>
+      </tfoot>
+    </table>
+
+    <table>
+      <thead>
+        <tr><th scope="col">Planta alta</th><th scope="col">m²</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Habitación</td><td>30,26</td></tr>
+        <tr><td>Vestidor</td><td>3,99</td></tr>
+        <tr><td>Baño</td><td>3,92</td></tr>
+      </tbody>
+      <tfoot>
+        <tr><td>Subtotal</td><td>38,17</td></tr>
+        <tr class="total"><td>Total</td><td>147,48</td></tr>
+      </tfoot>
+    </table>
+  </section>
+</main>
+
+<footer class="sheet perfil" id="perfil" data-sheet>
+  <h2>Fiamma <b>Alcorta</b></h2>
+
+  <p class="perfil__lead">Estudiante de Arquitectura en la Universidad Nacional de Avellaneda.</p>
+
+  <dl class="facts">
+    <div><dt>Formación</dt><dd>Arquitectura, UNDAV. En curso</dd></div>
+    <div><dt>Herramientas</dt><dd>Revit</dd><dd>AutoCAD</dd></div>
+  </dl>
+</footer>
+
+<p class="folio" aria-hidden="true" hidden></p>
+
+<button class="sound" type="button" aria-pressed="false" hidden>Sonido</button>
+
+<dialog class="viewer" aria-label="Lámina ampliada">
+  <button class="viewer__close" type="button">Cerrar</button>
+  <div class="viewer__paper"></div>
+</dialog>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>

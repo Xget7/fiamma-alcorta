@@ -1,0 +1,610 @@
+@font-face {
+  font-family: "Chivo";
+  src: url("fonts/chivo-latin.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --paper: #fff; /* must match the white of the drawings so they sit on the page without a box */
+  --ink: #111;
+  --mute: #6b6b6b;
+  --rule: #dcdcdc;
+  --teal: #3b7274; /* the ground of her plans */
+  /* Hot and cold, in the climate figure and the sun diagram. As a pair they pass
+     the colour-blind separation check, which --teal is too grey to pass. */
+  --warm: #b0553a;
+  --cool: #2f74a8;
+
+  --gutter: clamp(1rem, 4.5vw, 5rem);
+  --gap: clamp(1rem, 2.2vw, 2.5rem);
+  --leap: clamp(6rem, 24vh, 15rem);
+
+  --small: 0.8125rem;
+  --title: clamp(1.5rem, 1.05rem + 1.5vw, 2.5rem);
+
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Chivo", "Helvetica Neue", Arial, sans-serif;
+  font-size: 100%;
+  line-height: 1.45;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  scrollbar-color: var(--ink) var(--paper);
+  scrollbar-width: thin;
+}
+
+body {
+  margin: 0;
+  padding-bottom: var(--leap);
+}
+
+::selection {
+  background: var(--teal);
+  color: var(--paper);
+}
+
+:focus-visible {
+  outline: 1px solid var(--ink);
+  outline-offset: 4px;
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.3em;
+  transition: color 160ms ease-out;
+}
+
+a:hover {
+  color: var(--teal);
+}
+
+h1,
+h2,
+p,
+dl,
+dd,
+figure {
+  margin: 0;
+}
+
+h1,
+h2 {
+  font-size: var(--title);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-transform: lowercase;
+  text-wrap: balance;
+}
+
+h1 b,
+h2 b {
+  font-weight: 700;
+}
+
+/* Sheets: every block of the scroll sits on the same twelve columns. */
+
+.sheet {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gap);
+  max-width: 110rem;
+  margin: var(--leap) auto 0;
+  padding-inline: var(--gutter);
+}
+
+.sheet > * {
+  grid-column: 1 / -1;
+}
+
+/* Figures */
+
+.fig {
+  /* --ar is the image's width over height; the cap keeps a whole drawing inside one screen. */
+  width: min(100%, calc(84svh * var(--ar)));
+  container-type: inline-size;
+}
+
+.fig img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.fig figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.25rem 1rem;
+  margin-top: 0.875rem;
+  font-size: var(--small);
+}
+
+.fig .credit {
+  color: var(--mute);
+}
+
+/* A drawing that does not open in the viewer, with what is drawn over it. */
+.plate {
+  position: relative;
+}
+
+.plate svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.zoom {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  cursor: zoom-in;
+}
+
+/* Graphic scale. --len is the bar's real length as a fraction of the drawing's width,
+   so the bar stays true at any size the drawing is shown. */
+.bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--mute);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.bar::before {
+  content: "";
+  width: calc(var(--len) * 100cqw);
+  height: 5px;
+  border-right: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  background: repeating-linear-gradient(
+    to right,
+    var(--ink) 0 1px,
+    transparent 1px calc(100% / var(--div, 5))
+  );
+}
+
+.pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--gap);
+}
+
+.pair--rows {
+  row-gap: clamp(3rem, 9vh, 6rem);
+}
+
+.pair .fig {
+  width: 100%;
+}
+
+.stack {
+  display: grid;
+  gap: clamp(1.25rem, 4vh, 3rem);
+}
+
+/* Cover */
+
+.cover {
+  min-height: 100svh;
+  margin-top: 0;
+  padding-block: clamp(1.25rem, 3.2vw, 3rem);
+  grid-template-rows: 1fr auto;
+  row-gap: 2.5rem;
+}
+
+.cover__id {
+  grid-column: 1 / span 4;
+  grid-row: 1;
+}
+
+.cover__id p,
+.sub {
+  margin-top: 0.75rem;
+  color: var(--mute);
+  font-size: var(--small);
+}
+
+.cover__nav {
+  grid-column: 1 / span 4;
+  grid-row: 2;
+  display: grid;
+  justify-items: start;
+  gap: 0.375rem;
+  font-size: var(--small);
+}
+
+.cover__fig {
+  grid-column: 5 / -1;
+  grid-row: 1 / -1;
+  align-self: center;
+  justify-self: end;
+  width: min(100%, calc((100svh - 9rem) * var(--ar)));
+}
+
+/* A sheet told in a few lines: the text at the foot of the left margin, its drawing beside it. */
+
+.spread {
+  align-items: end;
+}
+
+.spread__text {
+  grid-column: 1 / span 3;
+}
+
+.spread__fig {
+  grid-column: 5 / -1;
+  justify-self: end;
+}
+
+.ordinal {
+  margin-bottom: 0.75rem;
+  color: var(--mute);
+  font-size: var(--small);
+  font-variant-numeric: tabular-nums;
+}
+
+.prose {
+  max-width: 38ch;
+  margin-top: 1.5rem;
+  font-size: var(--small);
+  text-wrap: pretty;
+}
+
+.prose + .prose {
+  margin-top: 0.875rem;
+  color: var(--mute);
+}
+
+/* Site */
+
+.lugar {
+  align-items: end;
+  row-gap: clamp(3rem, 9vh, 6rem);
+}
+
+.lugar__text {
+  grid-column: 1 / span 3;
+}
+
+.lugar__map {
+  grid-column: 5 / -1;
+  justify-self: end;
+}
+
+/* The lot, outlined on the satellite image. */
+.lugar__map polygon {
+  fill: rgb(255 255 255 / 0.18);
+  stroke: #fff;
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+
+.lugar__street {
+  grid-column: 5 / span 4;
+}
+
+.lugar__notes {
+  grid-column: 9 / -1;
+  align-self: start;
+  display: grid;
+  gap: 0.875rem;
+  max-width: 38ch;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--small);
+  text-wrap: pretty;
+}
+
+/* Climate. The figure itself is drawn by climate.js and styled in climate.css. */
+
+.clima {
+  align-items: end;
+}
+
+.clima__text {
+  grid-column: 1 / span 3;
+}
+
+.clima__fig {
+  grid-column: 5 / -1;
+}
+
+.keys {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+
+.keys div {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.25rem;
+}
+
+.keys dt {
+  color: var(--mute);
+  font-size: var(--small);
+}
+
+.keys dd {
+  font-size: var(--title);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+/* Sun diagram: a north-south section of the sky at noon. Positions are given in
+   the units of its 600 by 330 drawing, so the labels keep their size as it scales. */
+
+.sun {
+  width: min(100%, 46rem);
+}
+
+.sun .plate {
+  aspect-ratio: 600 / 330;
+  font-size: var(--small);
+}
+
+.sun path {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.sun .sun__sky {
+  stroke: var(--rule);
+}
+
+.sun .sun__angle {
+  stroke: var(--mute);
+}
+
+.sun__summer {
+  fill: var(--warm);
+}
+
+.sun__winter {
+  fill: var(--cool);
+}
+
+.sun .plate span {
+  position: absolute;
+  left: calc(var(--x) / 600 * 100%);
+  top: calc(var(--y) / 330 * 100%);
+  translate: -50% -50%;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.sun .plate span[data-at="right"] {
+  translate: 0 -50%;
+}
+
+.sun .plate span:not([data-at]) {
+  color: var(--mute);
+}
+
+.facts {
+  display: grid;
+  gap: 0.875rem;
+  margin-top: 2.5rem;
+  font-size: var(--small);
+}
+
+.facts dt {
+  color: var(--mute);
+}
+
+/* Placements on the twelve columns */
+
+.at-1-9 {
+  grid-column: 1 / span 9;
+}
+
+.at-2-11 {
+  grid-column: 2 / span 10;
+  justify-self: center;
+}
+
+.at-4-12 {
+  grid-column: 4 / -1;
+  justify-self: end;
+}
+
+/* Room schedule */
+
+.planilla {
+  align-items: start;
+  row-gap: 3rem;
+}
+
+.planilla h2 {
+  grid-column: 1 / span 4;
+}
+
+.planilla table {
+  grid-column: span 4;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--small);
+  font-variant-numeric: tabular-nums;
+}
+
+.planilla th,
+.planilla td {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--rule);
+  font-weight: 400;
+  text-align: left;
+}
+
+.planilla th {
+  color: var(--mute);
+  border-bottom-color: var(--ink);
+}
+
+.planilla :is(th, td):last-child {
+  text-align: right;
+}
+
+.planilla tfoot td {
+  font-weight: 700;
+}
+
+.planilla .total td {
+  border-bottom: 0;
+  padding-top: 1.5rem;
+  font-size: var(--title);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.planilla .total td:first-child {
+  font-size: var(--small);
+  font-weight: 700;
+  letter-spacing: 0;
+  vertical-align: bottom;
+}
+
+/* Profile */
+
+.perfil {
+  align-items: start;
+  row-gap: 3rem;
+}
+
+.perfil h2 {
+  grid-column: 1 / span 4;
+}
+
+.perfil__lead {
+  grid-column: 5 / span 5;
+  max-width: 30ch;
+  font-size: clamp(1.125rem, 0.9rem + 0.8vw, 1.5rem);
+  font-weight: 300;
+  line-height: 1.3;
+  text-wrap: pretty;
+}
+
+.perfil .facts {
+  grid-column: 10 / -1;
+  margin-top: 0.25rem;
+  gap: 1.75rem;
+}
+
+/* For readers who cannot see a drawing: still read aloud, not shown. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Folio: sheet count down the page edge, like the fore-edge of a bound set. */
+
+.folio {
+  position: fixed;
+  right: calc(var(--gutter) / 2);
+  bottom: clamp(1.25rem, 3.2vw, 3rem);
+  margin: 0;
+  translate: 50% 0;
+  writing-mode: vertical-rl;
+  color: var(--mute);
+  font-size: 0.6875rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+}
+
+/* Narrow screens: one column, drawings at full width. */
+
+@media (max-width: 50rem) {
+  .sheet > *,
+  .cover__id,
+  .cover__nav,
+  .cover__fig,
+  .spread__text,
+  .spread__fig,
+  .lugar__text,
+  .lugar__map,
+  .lugar__street,
+  .lugar__notes,
+  .clima__text,
+  .clima__fig,
+  .planilla h2,
+  .planilla table,
+  .perfil h2,
+  .perfil__lead,
+  .perfil .facts {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+
+  .fig,
+  .cover__fig {
+    width: 100%;
+    justify-self: stretch;
+  }
+
+  .cover {
+    grid-template-rows: auto 1fr auto;
+  }
+
+  /* Name, drawing, contents: the drawing takes the free row. */
+  .cover__fig {
+    grid-row: 2;
+    align-self: center;
+  }
+
+  .cover__nav {
+    grid-row: 3;
+  }
+
+  .spread,
+  .lugar,
+  .clima {
+    row-gap: 3rem;
+  }
+
+  .lugar__street {
+    width: min(100%, 22rem);
+  }
+
+  .pair {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: clamp(2.5rem, 8vh, 4rem);
+  }
+
+  .perfil .facts {
+    margin-top: 0;
+  }
+
+  .folio {
+    display: none;
+  }
+}

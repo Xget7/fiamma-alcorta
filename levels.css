@@ -1,0 +1,88 @@
+/* Plans. As written, three drawings one after the other. levels.js adds .is-live
+   and they become one frame held on screen while the scroll goes up the house. */
+
+.levels__pin {
+  display: grid;
+  row-gap: var(--leap);
+}
+
+.levels .fig {
+  /* Ten of the twelve columns, like a drawing with a page to itself. */
+  width: min(100% * 10 / 12, calc(84svh * var(--ar)));
+}
+
+/* Each plan holds the scroll for 60svh. */
+.levels.is-live {
+  display: block;
+  height: 280svh;
+}
+
+.levels.is-live .levels__pin {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  align-content: center;
+}
+
+/* A level arrives like a sheet of tracing paper laid over the one below. It
+   leaves faster than it arrives. */
+.levels.is-live .fig {
+  grid-area: 1 / 1;
+  transition:
+    opacity 450ms cubic-bezier(0.16, 1, 0.3, 1),
+    translate 450ms cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0s;
+}
+
+.levels.is-live .fig.is-above {
+  opacity: 0;
+  translate: 0 -0.75rem;
+  visibility: hidden;
+  transition:
+    opacity 250ms ease-out,
+    translate 250ms ease-out,
+    visibility 0s 250ms;
+}
+
+/* The captions share one line, so only the top plan's shows. */
+.levels.is-live figcaption {
+  transition: opacity 200ms ease-out;
+}
+
+.levels.is-live .fig:not(.is-current) figcaption {
+  opacity: 0;
+}
+
+/* Which level this is, drawn as three floors in section. */
+.levels.is-live figcaption > span:first-child::before {
+  content: "";
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.625rem;
+  margin-right: 0.625rem;
+  background:
+    linear-gradient(var(--top, var(--rule)) 0 0) 0 0 / 100% 2px no-repeat,
+    linear-gradient(var(--mid, var(--rule)) 0 0) 0 50% / 100% 2px no-repeat,
+    linear-gradient(var(--low, var(--rule)) 0 0) 0 100% / 100% 2px no-repeat;
+}
+
+.levels .fig:nth-child(1) { --low: var(--ink); }
+.levels .fig:nth-child(2) { --mid: var(--ink); }
+.levels .fig:nth-child(3) { --top: var(--ink); }
+
+@media (prefers-reduced-motion: reduce) {
+  .levels.is-live .fig {
+    translate: none;
+    transition: opacity 120ms ease-out, visibility 0s;
+  }
+
+  .levels.is-live .fig.is-above {
+    transition: opacity 120ms ease-out, visibility 0s 120ms;
+  }
+}
+
+@media (max-width: 50rem) {
+  .levels .fig {
+    width: 100%;
+  }
+}

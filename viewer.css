@@ -1,0 +1,95 @@
+/* Viewer: one drawing on a white screen. The page behind holds still. */
+
+html:has(.viewer[open]) {
+  overflow: hidden;
+  /* Keeps the scrollbar's room, so the page does not widen under the dialog. */
+  scrollbar-gutter: stable;
+}
+
+/* The thumbnail is away while its drawing is enlarged. Visibility, because the
+   page's own motion uses opacity and transform on these elements. */
+.zoom[data-lifted] img {
+  visibility: hidden;
+}
+
+.viewer {
+  --margin: clamp(0.75rem, 3vw, 3rem);
+
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  overflow: hidden;
+  /* Every gesture on the drawing is ours: tap to zoom, one finger to pan. */
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* The paper is an element rather than the backdrop, so it can fade while the
+   drawing travels over the page. */
+.viewer::backdrop {
+  background: none;
+}
+
+.viewer__paper {
+  position: absolute;
+  inset: 0;
+  background: var(--paper);
+}
+
+/* Laid out at its resting size and placed by a transform from the top left. */
+.viewer__drawing {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: none;
+  transform-origin: 0 0;
+  -webkit-user-drag: none;
+}
+
+.viewer__drawing.is-leaving {
+  pointer-events: none;
+}
+
+.viewer[data-zoomable] .viewer__drawing {
+  cursor: zoom-in;
+}
+
+.viewer[data-state="zoomed"] .viewer__drawing {
+  cursor: grab;
+}
+
+.viewer[data-dragging],
+.viewer[data-dragging] .viewer__drawing {
+  cursor: grabbing;
+}
+
+.viewer__close {
+  position: absolute;
+  top: var(--margin);
+  right: var(--margin);
+  z-index: 1;
+  padding: 0.375rem 0.75rem;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: var(--small);
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background-color 160ms ease-out, color 160ms ease-out;
+}
+
+.viewer__close:hover {
+  background: var(--ink);
+  color: var(--paper);
+}

@@ -1,0 +1,89 @@
+/* Motion. motion.js plays the entrances; this file holds the states they start
+   from and the plain transitions. Nothing here hides content on its own: every
+   hidden state hangs on a class or attribute that only script sets. */
+
+@media screen {
+  /* .motion-pending is set by the early script in <head> and removed by motion.js.
+     Until then a drawing stays out of sight, so it is never seen and then hidden
+     for its entrance. */
+  .motion-pending :is(.zoom img, .plate),
+  [data-enter] {
+    opacity: 0;
+  }
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* What the cover sequence, the titles, the charts and the scale bars will bring in. */
+  .motion-pending :is(.cover__id > *, .cover__nav a, .cover__fig, h2, .bar, .chart__plots) {
+    opacity: 0;
+  }
+}
+
+/* A line of a title being set rises from behind its own lower edge. The clip
+   reaches past the line box so ascenders and descenders are not cut meanwhile. */
+.line,
+.line > span {
+  display: block;
+}
+
+.line {
+  clip-path: inset(-0.15em);
+}
+
+/* While motion.js measures a scale bar out, --drawn runs from 0 to 1. Otherwise it
+   is unset, which makes this declaration invalid and leaves clip-path at none. */
+.bar::before {
+  clip-path: inset(0 calc((1 - var(--drawn)) * 100%) 0 0);
+}
+
+/* The sheet number moves when it changes, and only a box can take a transform. */
+.folio span {
+  display: inline-block;
+}
+
+/* Contents links: a faint rule at rest. On hover or focus an ink line is drawn
+   along it from the left, and lifted off to the right when that ends. */
+.cover__nav a {
+  position: relative;
+  text-decoration: none;
+}
+
+.cover__nav a::before,
+.cover__nav a::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 1px;
+}
+
+.cover__nav a::before {
+  background: var(--rule);
+}
+
+.cover__nav a::after {
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cover__nav a:is(:hover, :focus-visible)::after {
+  transform: none;
+  transform-origin: left;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cover__nav a::after {
+    transform: none;
+    opacity: 0;
+    transition: opacity 100ms ease-out;
+  }
+
+  .cover__nav a:is(:hover, :focus-visible)::after {
+    opacity: 1;
+  }
+}

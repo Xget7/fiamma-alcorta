@@ -1,0 +1,77 @@
+/* Sound toggle: a margin note in the left gutter, mirroring the folio on the right. */
+
+.sound {
+  position: fixed;
+  left: calc(var(--gutter) / 2);
+  bottom: clamp(1.25rem, 3.2vw, 3rem);
+  /* Turned to face outward, as the folio does on its side. */
+  translate: -50% 0;
+  rotate: 180deg;
+  writing-mode: vertical-rl;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  color: var(--mute);
+  font: inherit;
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  /* Always present but transparent, so switching off can fade the line in. */
+  text-decoration: line-through 1px transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    color 120ms ease-out,
+    text-decoration-color 120ms ease-out;
+}
+
+/* Hover only where it exists; on touch it would stick after the tap. */
+@media (hover: hover) {
+  .sound:hover {
+    color: var(--ink);
+  }
+}
+
+.sound[aria-pressed="false"] {
+  text-decoration-color: currentColor;
+}
+
+/* A fingertip-sized target around the small word, without drawing it larger. */
+@media (pointer: coarse) {
+  .sound::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: max(100%, 44px);
+    height: max(100%, 44px);
+    translate: -50% -50%;
+  }
+}
+
+/* One column: the gutter is too narrow for a margin note, so the toggle sits at
+   the top right of the cover, on the name's line, and scrolls away with it. */
+@media (max-width: 50rem) {
+  .sound {
+    position: absolute;
+    left: auto;
+    right: var(--gutter);
+    bottom: auto;
+    /* The cover's top padding, plus the drop that puts this smaller text on
+       the name's baseline (Chivo's ascent minus descent, halved, per em). */
+    top: calc(clamp(1.25rem, 3.2vw, 3rem) + (var(--title) - var(--small)) * 0.36);
+    translate: none;
+    rotate: none;
+    writing-mode: horizontal-tb;
+    font-size: var(--small);
+    letter-spacing: 0;
+    line-height: calc(var(--title) * 1.05);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sound {
+    transition: none;
+  }
+}
