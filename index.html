@@ -17,7 +17,6 @@
     document.documentElement.classList.add('motion-pending');
     setTimeout(() => document.documentElement.classList.remove('motion-pending'), 3000);
   </script>
-  <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="viewer.css">
   <link rel="stylesheet" href="motion.css">
@@ -94,14 +93,22 @@ FORM: printed architecture portfolio as a single scroll. Direction pinned by the
       <p class="sub">Entre Ríos</p>
     </div>
 
-    <figure class="fig lugar__map" style="--ar: 1.898">
-      <div class="lugar__interactive-map" id="location-map" role="region"
-           aria-label="Mapa interactivo del terreno en Concepción del Uruguay"
-           aria-describedby="location-map-note">
-        <p class="lugar__map-loading">Mapa del sector elegido</p>
+    <figure class="fig lugar__map" style="--ar: 1.852">
+      <div class="plate lugar__satellite">
+        <img src="media/sector-satelital-2000.jpg" width="2000" height="1125"
+             loading="lazy" decoding="async"
+             alt="Vista satelital de San Martín y Cazzulino, Concepción del Uruguay. El terreno del proyecto está delineado en la franja este del espacio verde.">
+        <svg viewBox="0 45 2000 1080" aria-hidden="true">
+          <polygon points="1000,374 1198,347 1299,760 1082,800" />
+          <g class="lugar__street-labels">
+            <text x="850" y="359" transform="rotate(-13 850 359)">San Martín</text>
+            <text x="1411" y="855" transform="rotate(77 1411 855)">P. F. Cazzulino</text>
+            <text x="163" y="746" transform="rotate(76 163 746)">Ing. Diez Figueras</text>
+          </g>
+        </svg>
       </div>
-      <figcaption><span>Sector elegido</span><a href="https://www.openstreetmap.org/?mlat=-32.48962&amp;mlon=-58.25638#map=19/-32.48962/-58.25638" target="_blank" rel="noopener noreferrer">Abrir mapa</a></figcaption>
-      <p class="lugar__map-note" id="location-map-note">Terreno marcado según la lámina. Delimitación aproximada.</p>
+      <figcaption><span>Sector elegido</span><span class="credit">Google Earth / Airbus</span></figcaption>
+      <p class="lugar__map-note">Terreno marcado según la lámina. Delimitación aproximada.</p>
     </figure>
 
     <figure class="fig lugar__street" style="--ar: 1.678">

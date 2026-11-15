@@ -601,29 +601,24 @@ h2 b {
   }
 }
 
-/* Leaflet panes stay below the portfolio viewer and navigation. */
-.lugar__interactive-map {
-  display: block;
-  width: 100%;
-  height: clamp(340px, 38vw, 600px);
-  position: relative;
-  isolation: isolate;
-  background: #f0f0ec;
-  font-family: inherit;
+/* Frame out the export title, keeping the source credits along the bottom. */
+.lugar__satellite { aspect-ratio: 2000 / 1080; overflow: hidden; }
+.lugar__satellite img { width: 100%; height: 100%; object-fit: cover; object-position: bottom; }
+.lugar__satellite svg { pointer-events: none; }
+.lugar__satellite polygon {
+  fill: rgb(59 114 116 / .14);
+  stroke: #fff;
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
 }
-.lugar__interactive-map img.leaflet-tile { width: 256px; height: 256px; }
-.lugar__interactive-map .leaflet-control-attribution { font-size: 11px; }
-.lugar__map figcaption { flex-wrap: wrap; }
 .lugar__map-note { margin: .65rem 0 0; font-size: var(--small); color: var(--mute); }
-.lugar__map-loading { padding: 1rem; }
-.lugar__map-center {
-  display: block;
-  border: 0;
-  background: #fff;
-  color: #222;
-  padding: .6rem .8rem;
-  font: inherit;
-  cursor: pointer;
+
+.lugar__street-labels text {
+  font: 500 42px "Chivo", sans-serif;
+  text-anchor: middle;
+  fill: #252525;
+  stroke: rgb(255 255 255 / .92);
+  stroke-width: 7px;
+  stroke-linejoin: round;
+  paint-order: stroke fill;
 }
-.lugar__map-center:hover { background: #f4f4f4; }
-.lugar__map-center:focus-visible { outline: 2px solid #39767a; outline-offset: -3px; }
