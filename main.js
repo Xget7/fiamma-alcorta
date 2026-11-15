@@ -1,5 +1,6 @@
 import { startClimate } from './climate.js';
 import { startFolio } from './folio.js';
+import { startLocationMap } from './location-map.js';
 import { startLevels } from './levels.js';
 import { startMotion } from './motion.js';
 import { startSound } from './sound.js';
@@ -7,6 +8,7 @@ import { startViewer } from './viewer.js';
 
 startViewer();
 startLevels();
+startLocationMap();
 // The climate figure is drawn before the entrances are set up, so it gets one too.
 startClimate();
 startFolio();

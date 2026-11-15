@@ -17,6 +17,7 @@
     document.documentElement.classList.add('motion-pending');
     setTimeout(() => document.documentElement.classList.remove('motion-pending'), 3000);
   </script>
+  <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="viewer.css">
   <link rel="stylesheet" href="motion.css">
@@ -94,12 +95,13 @@ FORM: printed architecture portfolio as a single scroll. Direction pinned by the
     </div>
 
     <figure class="fig lugar__map" style="--ar: 1.898">
-      <iframe class="lugar__interactive-map"
-              title="Mapa satelital interactivo de San Martín 2076, Concepción del Uruguay"
-              src="https://www.google.com/maps/embed?hl=es&amp;origin=mfe&amp;pb=!1m4!2m1!1sSan+Mart%C3%ADn+2076,+Concepci%C3%B3n+del+Uruguay,+Entre+R%C3%ADos!5e1!6i18"
-              width="1040" height="548" loading="lazy" allowfullscreen
-              referrerpolicy="strict-origin-when-cross-origin"></iframe>
-      <figcaption><span>Sector elegido</span><a href="https://www.google.com/maps/search/?api=1&amp;query=San%20Mart%C3%ADn%20y%20P.%20F.%20Cazzulino%2C%20Concepci%C3%B3n%20del%20Uruguay%2C%20Entre%20R%C3%ADos" target="_blank" rel="noopener noreferrer">Abrir en Google Maps</a><span class="credit">Imagen: Google</span></figcaption>
+      <div class="lugar__interactive-map" id="location-map" role="region"
+           aria-label="Mapa interactivo del terreno en Concepción del Uruguay"
+           aria-describedby="location-map-note">
+        <p class="lugar__map-loading">Mapa del sector elegido</p>
+      </div>
+      <figcaption><span>Sector elegido</span><a href="https://www.openstreetmap.org/?mlat=-32.48962&amp;mlon=-58.25638#map=19/-32.48962/-58.25638" target="_blank" rel="noopener noreferrer">Abrir mapa</a></figcaption>
+      <p class="lugar__map-note" id="location-map-note">Terreno marcado según la lámina. Delimitación aproximada.</p>
     </figure>
 
     <figure class="fig lugar__street" style="--ar: 1.678">
